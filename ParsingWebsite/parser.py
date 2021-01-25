@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import subprocess, sys
 
 
 URL = 'https://kolesa.kz/cars/toyota/'
@@ -61,6 +62,8 @@ def parse():
         # cars = get_content(html.text)
         print(f'Get {len(cars)} cars')
         save_to_file(cars, FILE)
+        opener = "open" if sys.platform == "darwin" else "xdg-open"
+        subprocess.call([opener, FILE])
     else:
         print("Error")
 
